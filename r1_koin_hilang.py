@@ -14,7 +14,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   height: 100vh;
-  background: url("/static/atmi.jpg") no-repeat center/cover;
+  background: url("{{ url_for('static', filename='atmi.jpg') }}") no-repeat center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
