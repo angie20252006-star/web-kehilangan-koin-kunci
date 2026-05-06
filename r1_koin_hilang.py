@@ -50,14 +50,22 @@ button {
   cursor: pointer;
 }
 
-.danger { background: red; }
-.back { background: gray; }
+.danger {
+  background: red;
+}
 
-h3, p { color: white; }
+.back {
+  background: gray;
+}
+
+h3, p {
+  color: white;
+}
 </style>
 </head>
 
 <body>
+
 <div class="card">
 <h2 style="color:#00eaff;">Sistem Kehilangan Koin & Kunci Drawer ATMI</h2>
 
@@ -139,10 +147,18 @@ h3, p { color: white; }
   <h3>Proses Penggantian {{item}}</h3>
 
   {% if item == "kunci drawer" %}
-    <p>Langkah penggantian kunci...</p>
-  {% else %}
-    <p>Langkah penggantian koin...</p>
-  {% endif %}
+    <p>1. Pergi ke kabeng untuk meminta form keterangan hilang kunci drawer.</p>
+    <p>2. Konfirmasi dan minta tanda tangan ke kabeng sesuai prodi kamu.</p>
+    <p>3. Lakukan pembayaran di finance.</p>
+    <p>4. Serahkan kwitansi ke kabeng sesuai prodi kamu.</p>
+ {% else %}
+  <p>1. Konfirmasi kepada kabeng bahwa koin telah hilang.</p>
+  <p>2. Ambil form penggantian di kabeng sesuai prodi kamu.</p>
+  <p>3. Meminta tanda tangan pada setiap penjaga yang sedang bertugas dikamar alat di kampus gonzaga,arrupe,dan kampus 1.</p>
+  <p>4. Serahkan form ke finance agar mendapat kwitansi.</p>
+  <p>5. Serahkan kwitansi kepada kabeng sesuai prodi untuk dimintai tanda tangan.</p>
+  <p>6. Setelah ditandatanganin serahkan kwitansi kepada finance untuk melakukan pembayaran.</p>
+{% endif %}
 
   <button name="step" value="6">Lanjut</button>
 </form>
@@ -156,21 +172,36 @@ h3, p { color: white; }
 📄Contoh Form Penggantian {{ "Kunci" if item == "kunci drawer" else "Koin" }}
 </h3>
 
-
 {% if item == "koin" %}
-  <img src="{{ url_for('static', filename='form_koin.png') }}" style="width:100%;">
+  <img src="/static/form_koin.png" style="width:100%; border-radius:10px; margin-top:10px;">
 {% else %}
-  <img src="{{ url_for('static', filename='form_kunci.png') }}" style="width:100%;">
+  <img src="/static/form_kunci.png" style="width:100%; border-radius:10px; margin-top:10px;">
 {% endif %}
 
 <form method="post">
+  <input type="hidden" name="nama" value="{{nama}}">
+  <input type="hidden" name="nim" value="{{nim}}">
+  <input type="hidden" name="item" value="{{item}}">
   <button name="step" value="7">Lanjut</button>
+</form>
+
+<form method="post">
+  <button class="back" name="step" value="5">⬅ Kembali</button>
 </form>
 
 {% elif step == 7 %}
 <h3 style="color:#00ffcc;">✅ Berhasil</h3>
+
 <p>{{nama}}</p>
 <p>{{nim}}</p>
+
+<p>
+Pengajuan {{item}} sedang diproses, bertanggungjawablah dengan koin atau kunci drawer masing-masing.
+</p>
+
+<form method="post">
+  <button name="step" value="1">🔄 Ulangi</button>
+</form>
 {% endif %}
 
 </div>
