@@ -152,7 +152,10 @@ h3, p { color: white; }
 </form>
 
 {% elif step == 6 %}
-<h3 style="color:#00eaff;">📄Contoh Form</h3>
+<h3 style="color:#00eaff;">
+📄Contoh Form Penggantian {{ "Kunci" if item == "kunci drawer" else "Koin" }}
+</h3>
+
 
 {% if item == "koin" %}
   <img src="{{ url_for('static', filename='form_koin.png') }}" style="width:100%;">
