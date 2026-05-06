@@ -226,15 +226,17 @@ def home():
         warning = request.form.get("warning", "")
         warning2 = request.form.get("warning2", "")
 
-    return render_template_string(
-        HTML,
-        step=step,
-        nama=nama,
-        nim=nim,
-        item=item,
-        warning=warning,
-        warning2=warning2
-    )
+    from flask import render_template
+
+return render_template(
+    "index.html",
+    step=step,
+    nama=nama,
+    nim=nim,
+    item=item,
+    warning=warning,
+    warning2=warning2
+)
 
 if __name__ == "__main__":
     app.run(debug=True)
